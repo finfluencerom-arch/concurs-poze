@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toamna prin obiectiv — Concurs de fotografie</title>
+<meta name="description" content="Concurs de fotografie de toamnă pentru studenți. Premiu: 500 lei.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f8efe2;
+    --paper:#fffaf2;
+    --ink:#24170f;
+    --muted:#6f5a4b;
+    --rust:#b8441c;
+    --rust-dark:#8a300f;
+    --amber:#e8a03a;
+    --gold:#f3c56b;
+    --olive:#5f6130;
+    --wine:#5a1f1a;
+    --line:#e6d3bc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{overflow-x:clip}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:17px;overflow-x:hidden}
+  /* paper grain */
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.35;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.3 0 0 0 0 0.2 0 0 0 .35 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.02;letter-spacing:-.02em}
+  .hand{font-family:Caveat,cursive}
+  a{color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;position:relative}
+  .tbd{background:var(--gold);border-radius:6px;padding:1px 8px;font-weight:600;white-space:nowrap;color:var(--ink)}
+
+  /* NAV */
+  nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);z-index:50;width:min(1100px,calc(100% - 32px));
+      background:rgba(255,250,242,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border:1px solid rgba(230,211,188,.9);border-radius:999px;box-shadow:0 10px 30px rgba(60,30,10,.08)}
+  nav .in{display:flex;align-items:center;justify-content:space-between;height:60px;padding:0 10px 0 26px}
+  .logo{white-space:nowrap;font-family:Fraunces,serif;font-weight:900;font-size:19px;text-decoration:none;display:flex;align-items:center;gap:8px}
+  .logo i{font-style:italic;font-weight:400;color:var(--rust)}
+  nav ul{display:flex;gap:30px;list-style:none;font-size:15px;font-weight:500}
+  nav ul a{text-decoration:none;color:var(--muted);transition:.2s}
+  nav ul a:hover{color:var(--rust)}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--rust);color:#fff;text-decoration:none;font-weight:600;padding:15px 28px;border-radius:999px;transition:.25s;border:0;cursor:pointer;font-size:16px;box-shadow:0 8px 20px rgba(184,68,28,.28)}
+  .btn:hover{background:var(--rust-dark);transform:translateY(-2px);box-shadow:0 12px 26px rgba(184,68,28,.35)}
+  .btn .arr{transition:.25s}.btn:hover .arr{transform:translateX(4px)}
+  .btn.small{padding:10px 20px;font-size:14px;box-shadow:none}
+  .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid rgba(36,23,15,.35);box-shadow:none}
+  .btn.ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 0 100px;overflow:hidden;
+        background:radial-gradient(1200px 600px at 85% 20%,rgba(243,197,107,.55),transparent 60%),
+                   radial-gradient(900px 500px at 0% 100%,rgba(184,68,28,.18),transparent 60%),var(--bg)}
+  .hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .badge{display:inline-flex;align-items:center;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:7px 16px 7px 8px;font-size:14px;font-weight:500;margin-bottom:28px}
+  .badge b{background:var(--rust);color:#fff;border-radius:999px;padding:3px 10px;font-size:12px;letter-spacing:.06em}
+  .hero h1{font-size:clamp(54px,8.4vw,112px);font-weight:900;margin-bottom:26px}
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--rust);display:block}
+  .hero h1 .u{position:relative;white-space:nowrap}
+  .hero h1 .u svg{position:absolute;left:-2%;bottom:-.08em;width:104%;height:.3em}
+  .lead{font-size:20px;color:var(--muted);max-width:500px;margin-bottom:36px}
+  .lead strong{color:var(--ink)}
+  .ctas{display:flex;gap:14px;flex-wrap:wrap}
+
+  /* polaroids */
+  .stack{position:relative;height:540px}
+  .pol{position:absolute;background:#fff;padding:12px 12px 54px;border-radius:3px;
+       box-shadow:0 2px 4px rgba(0,0,0,.06),0 24px 50px rgba(60,30,10,.22);width:260px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+  .pol svg{display:block;width:100%;height:auto;border-radius:1px}
+  .pol .cap{position:absolute;bottom:12px;left:0;right:0;text-align:center;font-family:Caveat,cursive;font-size:24px;color:#5b4636}
+  .pol.a{top:0;left:4%;transform:rotate(-9deg);animation:floatA 7s ease-in-out infinite}
+  .pol.b{top:90px;right:0;transform:rotate(7deg);animation:floatB 8s ease-in-out infinite}
+  .pol.c{bottom:0;left:22%;transform:rotate(-3deg);animation:floatC 9s ease-in-out infinite;z-index:2}
+  .stack:hover .pol.a{transform:rotate(-14deg) translate(-20px,-10px)}
+  .stack:hover .pol.b{transform:rotate(11deg) translate(20px,-6px)}
+  @keyframes floatA{50%{translate:0 -10px}}
+  @keyframes floatB{50%{translate:0 12px}}
+  @keyframes floatC{50%{translate:0 -8px}}
+  .tape{position:absolute;top:-14px;left:50%;width:90px;height:28px;transform:translateX(-50%) rotate(-3deg);background:rgba(243,197,107,.65);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+  .sticker{position:absolute;right:6%;bottom:40px;z-index:3;width:130px;height:130px;animation:spin 18s linear infinite}
+  .sticker .mid{position:absolute;inset:0;display:grid;place-items:center;animation:spin 18s linear infinite reverse;font-family:Fraunces,serif;font-weight:900;font-size:30px;color:#fff;line-height:.9;text-align:center}
+  .sticker .mid small{display:block;font-size:13px;font-weight:600;font-family:Inter}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* falling leaves */
+  .leaves{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .leaves span{position:absolute;top:-60px;width:26px;height:26px;animation:fall linear infinite;opacity:.9}
+  .leaves svg{width:100%;height:100%}
+  @keyframes fall{
+    0%{transform:translate(0,0) rotate(0)}
+    25%{transform:translate(40px,25vh) rotate(90deg)}
+    50%{transform:translate(-20px,50vh) rotate(180deg)}
+    75%{transform:translate(50px,75vh) rotate(270deg)}
+    100%{transform:translate(0,110vh) rotate(360deg)}
+  }
+
+  /* MARQUEE */
+  .marquee{background:var(--rust);color:#fff;overflow:hidden;white-space:nowrap;padding:18px 0;transform:rotate(-1.2deg);margin:-20px -20px 0;position:relative;z-index:5;box-shadow:0 10px 30px rgba(138,48,15,.25)}
+  .marquee .track{display:inline-flex;gap:40px;animation:slide 28s linear infinite;font-family:Fraunces,serif;font-size:26px;font-weight:700;letter-spacing:.01em}
+  .marquee .track span{display:inline-flex;align-items:center;gap:40px}
+  .marquee .track span::after{content:"✺";color:var(--gold);font-size:22px}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  section{padding:120px 0;position:relative}
+  .kicker{font-family:Caveat,cursive;font-size:28px;color:var(--rust);margin-bottom:6px;display:block}
+  .sec-head{max-width:680px;margin-bottom:60px}
+  .sec-head h2{font-size:clamp(40px,5.5vw,68px);font-weight:900;margin-bottom:16px}
+  .sec-head h2 em{font-weight:400;color:var(--rust)}
+  .sec-head p{color:var(--muted);font-size:19px}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .step{border-radius:26px;padding:36px 30px 34px;position:relative;overflow:hidden;min-height:330px;display:flex;flex-direction:column;transition:transform .35s}
+  .step:hover{transform:translateY(-6px) rotate(-.5deg)}
+  .step:nth-child(1){background:var(--gold)}
+  .step:nth-child(2){background:var(--olive);color:#f8efe2}
+  .step:nth-child(3){background:var(--wine);color:#f8efe2}
+  .step .ico{width:58px;height:58px;border-radius:16px;background:rgba(255,255,255,.35);display:grid;place-items:center;margin-bottom:auto}
+  .step:nth-child(n+2) .ico{background:rgba(255,255,255,.12)}
+  .step .num{position:absolute;right:18px;top:4px;font-family:Fraunces,serif;font-size:130px;font-weight:900;opacity:.14;line-height:1}
+  .step h3{font-size:30px;margin:40px 0 10px}
+  .step p{font-size:16px;opacity:.85}
+
+  /* VOTE / IG MOCK */
+  .vote{background:var(--ink);color:#f8efe2;border-radius:40px;margin:0 16px;overflow:hidden}
+  .vote .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+  .vote .sec-head p{color:#cdbba7}
+  .vote .sec-head{margin-bottom:30px}
+  .vote ul{list-style:none;display:grid;gap:14px}
+  .vote li{display:flex;gap:14px;align-items:flex-start;color:#e5d6c4}
+  .vote li b{color:#fff}
+  .vote li .dot{flex:0 0 28px;height:28px;border-radius:50%;background:var(--rust);display:grid;place-items:center;font-size:14px;font-weight:700;color:#fff;margin-top:1px}
+  .feed{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;rotate:2deg}
+  .post{background:#fff;color:#111;border-radius:14px;overflow:hidden;font-size:12px;box-shadow:0 20px 40px rgba(0,0,0,.35);transition:.3s}
+  .post:hover{transform:translateY(-6px) scale(1.03)}
+  .post:nth-child(2){transform:translateY(30px)}
+  .post:nth-child(2):hover{transform:translateY(24px) scale(1.03)}
+  .post .hd{display:flex;align-items:center;gap:7px;padding:8px 10px;font-weight:600}
+  .post .av{width:20px;height:20px;border-radius:50%;background:conic-gradient(var(--amber),var(--rust),var(--wine),var(--amber));padding:2px}
+  .post .av i{display:block;width:100%;height:100%;border-radius:50%;background:#fff}
+  .post svg.ph{display:block;width:100%;height:auto}
+  .post .ft{padding:8px 10px 10px}
+  .post .likes{display:flex;align-items:center;gap:6px;font-weight:700;margin-bottom:2px}
+  .post .likes svg{width:18px;height:18px}
+  .post.win .likes svg{animation:beat 1.2s ease-in-out infinite}
+  @keyframes beat{0%,100%{transform:scale(1)}15%{transform:scale(1.3)}30%{transform:scale(1)}}
+  .post .crown{position:absolute}
+  .post small{color:#777}
+
+  /* PRIZE */
+  .prize{display:grid;grid-template-columns:auto 1fr;gap:70px;align-items:center}
+  .ticket{position:relative;background:var(--rust);color:#fff;border-radius:28px;padding:50px 60px;text-align:center;rotate:-4deg;box-shadow:0 30px 60px rgba(138,48,15,.35)}
+  .ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:40px;height:40px;border-radius:50%;background:var(--bg);transform:translateY(-50%)}
+  .ticket::before{left:-20px}.ticket::after{right:-20px}
+  .ticket .amt{font-family:Fraunces,serif;font-weight:900;font-size:clamp(100px,14vw,170px);line-height:.85}
+  .ticket .lei{font-family:Caveat,cursive;font-size:44px;display:block;margin-top:4px}
+  .ticket .lbl{font-size:12px;letter-spacing:.25em;text-transform:uppercase;opacity:.8;border-top:2px dashed rgba(255,255,255,.4);margin-top:18px;padding-top:14px}
+  .prize h2{font-size:clamp(38px,5vw,60px);font-weight:900;margin-bottom:18px}
+  .prize h2 em{font-weight:400;color:var(--rust)}
+  .prize p{color:var(--muted);font-size:19px;max-width:520px}
+
+  /* TIMELINE */
+  .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  .tl{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:28px 24px;position:relative}
+  .tl .n{font-family:Fraunces,serif;font-style:italic;color:var(--rust);font-size:20px}
+  .tl h3{font-size:24px;margin:8px 0 10px}
+  .tl p{font-size:15px;color:var(--muted);margin-top:8px}
+
+  /* RULES */
+  .rules-sec{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .noai{display:flex;gap:22px;align-items:center;background:linear-gradient(100deg,#fbe0cf,#fdf0e2);border:1px solid #efc4a5;border-radius:22px;padding:24px 28px;margin-bottom:28px}
+  .noai .big{font-family:Fraunces,serif;font-weight:900;font-size:34px;color:var(--rust);white-space:nowrap;line-height:1}
+  .noai .big s{text-decoration-thickness:4px}
+  .rules{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;align-items:start}
+  details{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:20px 24px;transition:.25s}
+  details:hover{border-color:var(--amber)}
+  details[open]{background:#fff;border-color:var(--amber);box-shadow:0 10px 30px rgba(60,30,10,.06)}
+  summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";flex:0 0 30px;height:30px;border-radius:50%;background:var(--paper);border:1px solid var(--line);display:grid;place-items:center;font-size:20px;color:var(--rust);font-weight:400;transition:.25s}
+  details[open] summary::after{transform:rotate(45deg);background:var(--rust);color:#fff;border-color:var(--rust)}
+  details .body{margin-top:12px;color:var(--muted);font-size:15.5px}
+  details .body ul{padding-left:20px;margin-top:6px}
+  details .body li{margin-bottom:4px}
+
+  /* FORM */
+  .form-wrap{position:relative;max-width:820px;margin:0 auto}
+  .form-card{position:relative;z-index:2;background:#fff;border-radius:32px;padding:56px;box-shadow:0 30px 80px rgba(60,30,10,.12)}
+  .form-card h2{font-size:clamp(38px,5vw,56px);font-weight:900;margin-bottom:10px;text-align:center}
+  .form-card h2 em{font-weight:400;color:var(--rust)}
+  .form-card > p{text-align:center;color:var(--muted);margin-bottom:30px}
+  .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:34px}
+  .chips span{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:14px;font-weight:500}
+  .placeholder{border:2px dashed var(--line);border-radius:22px;padding:46px 28px;text-align:center;color:var(--muted);background:repeating-linear-gradient(-45deg,transparent 0 14px,rgba(243,197,107,.08) 14px 28px)}
+  .placeholder h3{font-size:24px;color:var(--ink);margin-bottom:8px}
+  .deco{position:absolute;z-index:1;background:#fff;padding:8px 8px 30px;box-shadow:0 14px 30px rgba(60,30,10,.18);width:150px}
+  .deco svg{display:block;width:100%;height:auto}
+  .deco.l{left:-90px;top:40px;transform:rotate(-12deg)}
+  .deco.r{right:-80px;bottom:60px;transform:rotate(10deg)}
+
+  /* FAQ */
+  .faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+  .faq details{margin-bottom:12px}
+
+  footer{background:var(--ink);color:#cdbba7;padding:70px 0 40px;margin-top:40px}
+  footer .big{font-family:Fraunces,serif;font-size:clamp(46px,8vw,110px);font-weight:900;color:#f8efe2;line-height:.95;margin-bottom:40px}
+  footer .big em{font-weight:400;color:var(--amber)}
+  footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:14px;border-top:1px solid rgba(255,255,255,.12);padding-top:24px}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+  .rv.on{opacity:1;transform:none}
+  .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    .rv{opacity:1;transform:none}
+    .leaves{display:none}
+  }
+  @media (max-width:900px){
+    nav ul{display:none}
+    .hero{padding:120px 0 80px}
+    .hero .grid,.vote .grid,.prize,.faq-grid{grid-template-columns:1fr}
+    .stack{height:440px;max-width:400px;margin:20px auto 0;width:100%}
+    .pol{width:200px}
+    .sticker{width:105px;height:105px;right:0}
+    .steps,.rules,.timeline{grid-template-columns:1fr}
+    .timeline{grid-template-columns:1fr 1fr}
+    .step{min-height:260px}
+    .vote{margin:0;border-radius:28px}
+    .feed{rotate:0deg}
+    .prize{gap:50px;justify-items:center;text-align:center}
+    .prize p{margin:0 auto}
+    .form-card{padding:36px 22px}
+    .deco{display:none}
+    section{padding:84px 0}
+    .noai{flex-direction:column;align-items:flex-start}
+  }
+  @media (max-width:520px){ .timeline{grid-template-columns:1fr} .feed{gap:8px} .logo i{display:none} nav .in{padding:0 8px 0 18px} .btn.small{padding:9px 16px;white-space:nowrap} }
+</style>
+</head>
+<body>
+
+<!-- reusable SVG symbols -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="maple" viewBox="0 0 100 100"><path d="M50 4 L57 27 L78 17 L71 41 L96 44 L76 58 L84 80 L58 70 L53 96 L47 96 L42 70 L16 80 L24 58 L4 44 L29 41 L22 17 L43 27 Z"/></symbol>
+    <symbol id="oak" viewBox="0 0 100 100"><path d="M50 4 C66 18 92 30 84 58 C78 80 60 90 50 96 C40 90 22 80 16 58 C8 30 34 18 50 4Z"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.8 8.2 3 4.5 6.7 4.5c2.1 0 3.6 1.1 5.3 3 1.7-1.9 3.2-3 5.3-3 3.7 0 5.9 3.7 4.3 7.3C19.5 16.4 12 21 12 21z"/></symbol>
+
+    <!-- photo scenes -->
+    <symbol id="scene-forest" viewBox="0 0 240 240">
+      <defs><linearGradient id="sky1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7c873"/><stop offset=".55" stop-color="#e88a3c"/><stop offset="1" stop-color="#9c3a17"/></linearGradient></defs>
+      <rect width="240" height="240" fill="url(#sky1)"/>
+      <circle cx="160" cy="110" r="34" fill="#ffe6a8" opacity=".9"/>
+      <path d="M0 150 Q60 120 120 145 T240 135 V240 H0Z" fill="#a8471c"/>
+      <path d="M0 175 Q70 150 140 172 T240 165 V240 H0Z" fill="#6e2b12"/>
+      <g fill="#3d1a0c">
+        <path d="M20 200 L34 140 L48 200Z"/><path d="M45 210 L62 130 L79 210Z"/><path d="M180 205 L196 135 L212 205Z"/><path d="M205 215 L220 150 L235 215Z"/>
+      </g>
+      <rect y="200" width="240" height="40" fill="#2e130a"/>
+    </symbol>
+    <symbol id="scene-leaf" viewBox="0 0 240 240">
+      <rect width="240" height="240" fill="#4a4b22"/>
+      <circle cx="40" cy="50" r="40" fill="#5c5d2a"/><circle cx="210" cy="200" r="60" fill="#3a3b1a"/>
+      <g transform="translate(120 122) rotate(-18) scale(1.45)"><use href="#maple" x="-50" y="-50" width="100" height="100" fill="#e2702a"/></g>
+      <g transform="translate(118 122) rotate(-18)"><path d="M0 -60 L4 80" stroke="#9c3a17" stroke-width="3"/></g>
+      <g transform="translate(48 190) rotate(30) scale(.5)"><use href="#maple" x="-50" y="-50" width="100" height="100" fill="#f0b24a"/></g>
+      <g transform="translate(200 50) rotate(-40) scale(.4)"><use href="#oak" x="-50" y="-50" width="100" height="100" fill="#b8441c"/></g>
+    </symbol>
+    <symbol id="scene-street" viewBox="0 0 240 240">
+      <defs>
+        <linearGradient id="sky3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3b2a3a"/><stop offset="1" stop-color="#8a4a3a"/></linearGradient>
+        <radialGradient id="glow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".95"/><stop offset="1" stop-color="#ffd27a" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect width="240" height="240" fill="url(#sky3)"/>
+      <circle cx="150" cy="70" r="60" fill="url(#glow)"/>
+      <rect x="146" y="72" width="7" height="140" fill="#1e1418"/>
+      <path d="M136 62 h28 l-6 14 h-16z" fill="#1e1418"/><rect x="141" y="66" width="18" height="8" fill="#ffe0a0"/>
+      <rect y="190" width="240" height="50" fill="#2a1c20"/>
+      <ellipse cx="150" cy="215" rx="50" ry="10" fill="#ffd27a" opacity=".25"/>
+      <g fill="#e2702a"><use href="#maple" x="30" y="196" width="20" height="20"/><use href="#maple" x="80" y="210" width="14" height="14" fill="#f0b24a"/><use href="#oak" x="196" y="200" width="16" height="16"/></g>
+      <g fill="#c4572a" opacity=".85"><circle cx="40" cy="70" r="26"/><circle cx="20" cy="100" r="22"/><circle cx="62" cy="96" r="22"/></g>
+      <rect x="38" y="110" width="6" height="85" fill="#1e1418"/>
+    </symbol>
+    <symbol id="scene-campus" viewBox="0 0 240 240">
+      <rect width="240" height="240" fill="#f2d6a8"/>
+      <rect x="30" y="80" width="180" height="120" fill="#c9a27a"/><path d="M20 82 L120 30 L220 82Z" fill="#8a3a1c"/>
+      <g fill="#6e4a32"><rect x="50" y="105" width="22" height="30"/><rect x="88" y="105" width="22" height="30"/><rect x="130" y="105" width="22" height="30"/><rect x="168" y="105" width="22" height="30"/><rect x="104" y="150" width="32" height="50"/></g>
+      <g fill="#e2702a"><circle cx="18" cy="160" r="30"/><circle cx="225" cy="150" r="34"/></g>
+      <g fill="#f0b24a"><circle cx="34" cy="185" r="22"/><circle cx="206" cy="182" r="24"/></g>
+      <rect y="200" width="240" height="40" fill="#a9622e"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav>
+  <div class="in">
+    <a href="#top" class="logo"><svg width="20" height="20" fill="#b8441c"><use href="#maple"/></svg>Toamna <i>prin obiectiv</i></a>
+    <ul>
+      <li><a href="#cum">Cum funcționează</a></li>
+      <li><a href="#vot">Votul</a></li>
+      <li><a href="#premiu">Premiu</a></li>
+      <li><a href="#regulament">Regulament</a></li>
+    </ul>
+    <a href="#inscriere" class="btn small">Trimite pozele</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="leaves" id="leaves"></div>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="badge rv"><b>NOU</b> Concurs de fotografie pentru studenți</div>
+        <h1 class="rv d1">Toamna,<em>prin <span class="u">obiectivul<svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M3 14 Q80 2 150 10 T297 8" stroke="#e8a03a" stroke-width="6" fill="none" stroke-linecap="round"/></svg></span> tău.</em></h1>
+        <p class="lead rv d2">Aleile, clădirile, colegii, colțurile tale preferate. Arată-ne cum arată toamna <strong>în campus și la facultate</strong>, trimite până la <strong>2 fotografii</strong> și poți câștiga <strong>500 de lei</strong>.</p>
+        <div class="ctas rv d3">
+          <a href="#inscriere" class="btn">Înscrie-te acum <span class="arr">→</span></a>
+          <a href="#regulament" class="btn ghost">Regulament</a>
+        </div>
+      </div>
+      <div class="stack rv d2" aria-hidden="true">
+        <div class="pol a"><div class="tape"></div><svg viewBox="0 0 240 240"><use href="#scene-forest"/></svg><div class="cap">toamna în campus</div></div>
+        <div class="pol b"><div class="tape"></div><svg viewBox="0 0 240 240"><use href="#scene-street"/></svg><div class="cap">seara, pe alee</div></div>
+        <div class="pol c"><div class="tape"></div><svg viewBox="0 0 240 240"><use href="#scene-leaf"/></svg><div class="cap">#toamnaprinobiectiv</div></div>
+        <div class="sticker">
+          <svg viewBox="0 0 130 130"><circle cx="65" cy="65" r="62" fill="#5a1f1a"/><defs><path id="circ" d="M65,65 m-48,0 a48,48 0 1,1 96,0 a48,48 0 1,1 -96,0"/></defs><text font-family="Inter" font-size="11.5" font-weight="600" letter-spacing="3.2" fill="#f3c56b"><textPath href="#circ">PREMIU · PREMIU · PREMIU · PREMIU ·</textPath></text></svg>
+          <div class="mid"><div>500<small>LEI</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>500 lei premiu</span><span>2 poze / student</span><span>Top 10 la vot</span><span>Like-urile decid</span><span>Editare da, AI nu</span><span>Doar studenți</span>
+    <span>500 lei premiu</span><span>2 poze / student</span><span>Top 10 la vot</span><span>Like-urile decid</span><span>Editare da, AI nu</span><span>Doar studenți</span>
+  </div>
+</div>
+
+<section id="cum">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">simplu, în 3 pași</span>
+      <h2>Cum <em>funcționează</em></h2>
+      <p>De la poza din telefon la premiul de 500 de lei.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv">
+        <div class="num">1</div>
+        <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <h3>Trimiți pozele</h3>
+        <p>Completezi formularul de pe pagină și încarci până la 2 fotografii de toamnă din campus sau de la facultate.</p>
+      </div>
+      <div class="step rv d1">
+        <div class="num">2</div>
+        <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>Selectăm top 10</h3>
+        <p>Echipa de organizare alege cele mai bune 10 fotografii dintre toate înscrierile.</p>
+      </div>
+      <div class="step rv d2">
+        <div class="num">3</div>
+        <div class="ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><use href="#heart"/></svg></div>
+        <h3>Like-urile decid</h3>
+        <p>Fiecare poză din top 10 apare în postarea ei pe Instagram. Câștigă cea cu cele mai multe like-uri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="vot" class="vote">
+  <div class="wrap">
+    <div class="grid">
+      <div class="rv">
+        <div class="sec-head">
+          <span class="kicker" style="color:var(--gold)">etapa finală</span>
+          <h2>Votul e pe <em style="color:var(--amber)">Instagram</em></h2>
+          <p>Cei 10 finaliști își promovează poza, iar prietenii, colegii și urmăritorii lor dau like.</p>
+        </div>
+        <ul>
+          <li><span class="dot">1</span><div><b>Fiecare poză are postarea ei.</b> Nu un carusel, ca like-urile să se poată număra corect.</div></li>
+          <li><span class="dot">2</span><div><b>Toate apar în același moment,</b> ca nimeni să nu aibă avantaj.</div></li>
+          <li><span class="dot">3</span><div><b>Votul se închide la ora anunțată.</b> Atunci numărăm like-urile.</div></li>
+          <li><span class="dot">4</span><div><b>Like-urile cumpărate duc la descalificare.</b> Jucăm corect.</div></li>
+        </ul>
+      </div>
+      <div class="feed rv d2" aria-hidden="true">
+        <div class="post"><div class="hd"><span class="av"><i></i></span>finalist_03</div><svg class="ph" viewBox="0 0 240 240"><use href="#scene-campus"/></svg><div class="ft"><div class="likes"><svg viewBox="0 0 24 24" fill="#222"><use href="#heart"/></svg>184</div><small>Foto: @andrei.m</small></div></div>
+        <div class="post win"><div class="hd"><span class="av"><i></i></span>finalist_07</div><svg class="ph" viewBox="0 0 240 240"><use href="#scene-forest"/></svg><div class="ft"><div class="likes"><svg viewBox="0 0 24 24" fill="#e0245e"><use href="#heart"/></svg>312</div><small>Foto: @ioana.f</small></div></div>
+        <div class="post"><div class="hd"><span class="av"><i></i></span>finalist_09</div><svg class="ph" viewBox="0 0 240 240"><use href="#scene-street"/></svg><div class="ft"><div class="likes"><svg viewBox="0 0 24 24" fill="#222"><use href="#heart"/></svg>247</div><small>Foto: @maria.c</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="premiu">
+  <div class="wrap">
+    <div class="prize">
+      <div class="ticket rv">
+        <div class="amt">500</div>
+        <span class="lei">de lei</span>
+        <div class="lbl">Premiul cel mare</div>
+      </div>
+      <div class="rv d1">
+        <span class="kicker">ce câștigi</span>
+        <h2>Un premiu.<br><em>Un câștigător.</em></h2>
+        <p>Autorul fotografiei cu cele mai multe like-uri la închiderea votului primește <strong>500 de lei</strong>. Toți cei 10 finaliști sunt publicați pe pagina facultății, cu numele și tag-ul lor, deci câștigi vizibilitate oricum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calendar" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">notează-ți</span>
+      <h2>Calendar</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl rv"><span class="n">01</span><h3>Start înscrieri</h3><span class="tbd">[data]</span><p>Formularul se deschide.</p></div>
+      <div class="tl rv d1"><span class="n">02</span><h3>Final înscrieri</h3><span class="tbd">[data, ora]</span><p>Formularul se închide automat.</p></div>
+      <div class="tl rv d2"><span class="n">03</span><h3>Vot pe Instagram</h3><span class="tbd">[data, ora]</span><p>Top 10 publicat simultan.</p></div>
+      <div class="tl rv d3"><span class="n">04</span><h3>Câștigătorul</h3><span class="tbd">[data, ora]</span><p>Numărăm like-urile și anunțăm.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="regulament" class="rules-sec">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="kicker">pe scurt</span>
+      <h2>Regulament</h2>
+      <p>Pozele trebuie să fie ale tale, făcute de tine, în campus sau la facultate. Editarea e permisă, AI-ul nu.</p>
+    </div>
+    <div class="noai rv">
+      <div class="big"><s>AI</s></div>
+      <div><b>Editare foto: da. AI: nu.</b> Lumină, culori, contrast, crop, retuș fin sunt permise. Imaginile generate sau modificate cu AI (generative fill, înlocuire de cer, obiecte adăugate sau șterse cu AI) sunt descalificate.</div>
+    </div>
+    <div class="rules">
+      <details open class="rv">
+        <summary>1. Cine poate participa</summary>
+        <div class="body">Doar studenții înscriși la facultate în anul universitar curent. Organizatorii pot cere dovada calității de student (carnetul de student sau emailul instituțional).</div>
+      </details>
+      <details class="rv">
+        <summary>2. Câte fotografii pot trimite</summary>
+        <div class="body">Maximum <strong>2 fotografii</strong> per participant. Dacă un participant trimite mai multe, sunt luate în considerare doar primele 2 primite.</div>
+      </details>
+      <details class="rv">
+        <summary>3. Tema și cerințele tehnice</summary>
+        <div class="body"><ul>
+          <li>Tema: <strong>toamna în campus și/sau la facultate</strong>. Fotografia trebuie să aibă legătură clară cu campusul universitar sau cu facultatea (clădiri, alei, săli, oameni, viața de student). Fotografiile fără legătură cu campusul sau facultatea nu intră în concurs.</li>
+          <li>Fotografiile pot fi făcute cu telefonul sau cu aparatul foto.</li>
+          <li>Format JPG sau PNG, maximum 10 MB per fișier.</li>
+          <li>Fără ramă, watermark sau semnătură pe poză.</li>
+        </ul></div>
+      </details>
+      <details class="rv">
+        <summary>4. Editare și AI</summary>
+        <div class="body">Este permisă editarea foto (expunere, culori, contrast, crop, retuș fin). Este interzisă orice imagine generată, completată sau modificată cu instrumente AI. Organizatorii pot cere fișierul original, needitat. Dacă fișierul nu este trimis, participantul este descalificat.</div>
+      </details>
+      <details class="rv">
+        <summary>5. Originalitate și persoane în poză</summary>
+        <div class="body">Fotografiile trebuie să fie realizate de participant și să nu mai fi câștigat alte concursuri. Dacă în poză apar persoane care pot fi recunoscute, participantul trebuie să aibă acordul lor.</div>
+      </details>
+      <details class="rv">
+        <summary>6. Selecția și votul</summary>
+        <div class="body"><ul>
+          <li>Echipa de organizare alege top 10 fotografii.</li>
+          <li>Fiecare fotografie este publicată într-o <strong>postare separată</strong> pe Instagram. Toate apar în aceeași zi, la aceeași oră.</li>
+          <li>Câștigă fotografia cu cele mai multe like-uri la ora închiderii votului.</li>
+          <li>Postările cu like-uri cumpărate sau suspecte pot fi descalificate.</li>
+        </ul></div>
+      </details>
+      <details class="rv">
+        <summary>7. Premiul</summary>
+        <div class="body">Un singur câștigător primește premiul de 500 de lei. Câștigătorul este anunțat pe Instagram și contactat pe email.</div>
+      </details>
+      <details class="rv">
+        <summary>8. Drepturi și date personale</summary>
+        <div class="body">Autorii își păstrează drepturile de autor. Prin înscriere, participantul permite facultății să publice fotografiile pe canalele sale, cu menționarea autorului. Datele personale se folosesc doar pentru organizarea concursului și sunt șterse după încheierea lui.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="inscriere">
+  <div class="wrap">
+    <div class="form-wrap">
+      <div class="deco l" aria-hidden="true"><svg viewBox="0 0 240 240"><use href="#scene-campus"/></svg></div>
+      <div class="deco r" aria-hidden="true"><svg viewBox="0 0 240 240"><use href="#scene-leaf"/></svg></div>
+      <div class="form-card rv">
+        <span class="kicker" style="text-align:center">e rândul tău</span>
+        <h2>Trimite <em>fotografiile</em></h2>
+        <p>Durează 2 minute. Pregătește pozele, adresa de email și @-ul tău de Instagram, ca să te putem da tag dacă intri în top 10.</p>
+        <div class="chips"><span>📷 max. 2 poze</span><span>🗂 JPG/PNG, max. 10 MB</span><span>✨ editare da, AI nu</span><span>🏛 campus / facultate</span><span>✉️ email</span><span>📱 @ de Instagram</span></div>
+        <div id="tally-slot"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:20px">
+  <div class="wrap faq-grid">
+    <div class="sec-head rv" style="margin-bottom:0">
+      <span class="kicker">ai întrebări?</span>
+      <h2>Întrebări <em>frecvente</em></h2>
+      <p>Nu găsești răspunsul? Scrie-ne pe Instagram: <span class="tbd">[@cont]</span></p>
+    </div>
+    <div class="faq">
+      <details class="rv"><summary>Pot participa cu poze făcute cu telefonul?</summary><div class="body">Da. Contează ochiul tău, nu echipamentul.</div></details>
+      <details class="rv"><summary>Pot folosi Lightroom, Snapseed sau filtre?</summary><div class="body">Da, editarea clasică este permisă. Nu sunt permise funcțiile de generare AI: generative fill, expand, înlocuirea cerului cu AI, ștergerea sau adăugarea de obiecte cu AI.</div></details>
+      <details class="rv"><summary>Ce fel de poze se potrivesc temei?</summary><div class="body">Orice imagine de toamnă care are legătură cu campusul sau cu facultatea: clădirile, aleile, sălile, biblioteca, colegii, pauzele dintre cursuri. O poză de toamnă făcută în alt loc, fără legătură cu campusul, nu intră în concurs.</div></details>
+      <details class="rv"><summary>Pot trimite poze făcute înainte de concurs?</summary><div class="body">Da, dacă sunt făcute de tine în această toamnă, în campus sau la facultate, și nu au mai câștigat alte concursuri.</div></details>
+      <details class="rv"><summary>De ce îmi cereți contul de Instagram?</summary><div class="body">Dacă intri în top 10, te dăm tag în postare, ca să o poți distribui și să strângi like-uri. Contul trebuie să fie public, ca tag-ul să fie vizibil.</div></details>
+      <details class="rv"><summary>Cum aflu dacă am intrat în top 10?</summary><div class="body">Finaliștii sunt anunțați pe adresa de email din formular și pe Instagram, înainte să înceapă votul.</div></details>
+      <details class="rv"><summary>Am greșit o poză la înscriere. Ce fac?</summary><div class="body">Scrie-ne pe Instagram înainte de închiderea înscrierilor și înlocuim fotografia.</div></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="big">Ieși afară.<br><em>Fotografiază toamna.</em></div>
+    <div class="row">
+      <div><strong style="color:#fff">Toamna prin obiectiv</strong> · Concurs de fotografie pentru studenți</div>
+      <div>Instagram: <span class="tbd">[@contul facultății]</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ====== CONFIGURARE ======
+     După ce creezi formularul pe tally.so, copiază ID-ul din link
+     (ex: https://tally.so/r/wA8xYz  →  ID = "wA8xYz") și pune-l mai jos. */
+  const TALLY_FORM_ID = "";
+
+  const slot = document.getElementById("tally-slot");
+  if (TALLY_FORM_ID) {
+    slot.innerHTML = '<iframe data-tally-src="https://tally.so/embed/' + TALLY_FORM_ID +
+      '?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="600" frameborder="0" title="Înscriere concurs foto"></iframe>';
+    const s = document.createElement("script");
+    s.src = "https://tally.so/widgets/embed.js";
+    s.onload = () => window.Tally && Tally.loadEmbeds();
+    document.body.appendChild(s);
+  } else {
+    slot.innerHTML = '<div class="placeholder"><h3>Formularul de înscriere apare aici</h3><p>Formularul se deschide la începutul perioadei de înscriere.</p></div>';
+  }
+
+  // falling leaves
+  const colors = ["#e2702a","#b8441c","#f0b24a","#8a300f","#e8a03a"];
+  const box = document.getElementById("leaves");
+  for (let i = 0; i < 14; i++) {
+    const s = document.createElement("span");
+    const size = 16 + Math.random() * 22;
+    s.style.left = (Math.random() * 100) + "%";
+    s.style.width = s.style.height = size + "px";
+    s.style.animationDuration = (11 + Math.random() * 12) + "s";
+    s.style.animationDelay = (-Math.random() * 20) + "s";
+    s.style.opacity = .45 + Math.random() * .45;
+    const kind = Math.random() > .4 ? "maple" : "oak";
+    s.innerHTML = '<svg viewBox="0 0 100 100" fill="' + colors[i % colors.length] + '"><use href="#' + kind + '"/></svg>';
+    box.appendChild(s);
+  }
+
+  // reveal on scroll
+  const io = "IntersectionObserver" in window ? new IntersectionObserver(es => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } });
+  }, { threshold: .12 }) : null;
+  document.querySelectorAll(".rv").forEach(el => io ? io.observe(el) : el.classList.add("on"));
+</script>
+</body>
+</html>
